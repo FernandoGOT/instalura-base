@@ -2,6 +2,8 @@ import React from 'react'
 import get from 'lodash/get'
 import styled, { css } from 'styled-components'
 
+import { TextStyleVariantsMap } from '../../foundation/Text'
+
 const ButtonGhost = css`
   background: transparent;
   color: ${({ theme, variant }) => get(theme, `colors.${variant}.color`)};
@@ -19,6 +21,7 @@ const Button = styled.button`
   font-weight: bold;
   padding: 12px 26px;
   border-radius: 8px;
+  ${TextStyleVariantsMap.smallestException}
   border-radius: ${({ theme }) => theme.borderRadius};
   transition: opacity ${({ theme }) => theme.transition};
   ${({ ghost }) => (ghost ? ButtonGhost : ButtonDefault)}
