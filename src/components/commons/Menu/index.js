@@ -2,6 +2,7 @@ import React from 'react'
 
 import Logo from '../../../theme/Logo'
 import Button from '../../commons/Button'
+import Text from '../../foundation/Text'
 import { MenuWrapper } from './styles/MenuWrapper'
 
 const Menu = () => {
@@ -29,9 +30,13 @@ const Menu = () => {
       <MenuWrapper.CentralSide>
         {links.map(link => (
           <li key={link.url}>
-            <a href={link.url}>
+            <Text
+              tag='a'
+              href={link.url}
+              variant='smallestException'
+            >
               {link.text}
-            </a>
+            </Text>
           </li>
         ))}
       </MenuWrapper.CentralSide>
