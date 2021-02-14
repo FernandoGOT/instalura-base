@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 export const TextStyleVariantsMap = {
-  pharagraph1: css`
-  font-size: ${({ theme }) => theme.typographyVariants.pharagraph1.fontSize};
-  font-weight: ${({ theme }) => theme.typographyVariants.pharagraph1.fontWeight};
-  line-height: ${({ theme }) => theme.typographyVariants.pharagraph1.lineHeight};
+  paragraph1: css`
+  font-size: ${({ theme }) => theme.typographyVariants.paragraph1.fontSize};
+  font-weight: ${({ theme }) => theme.typographyVariants.paragraph1.fontWeight};
+  line-height: ${({ theme }) => theme.typographyVariants.paragraph1.lineHeight};
   `,
   smallestException: css`
   font-size: ${({ theme }) => theme.typographyVariants.smallestException.fontSize};
@@ -16,11 +16,9 @@ export const TextStyleVariantsMap = {
 
 }
 
-
 const TextBase = styled.span`
   ${({ variant }) => TextStyleVariantsMap[variant]}
 `
-
 
 const Text = ({ tag, variant, children }) => {
   return (
@@ -41,7 +39,7 @@ Text.defaultProps = {
 Text.propTypes = {
   children: PropTypes.node.isRequired,
   variant: PropTypes.oneOf(['paragraph1', 'smallestException']),
-  tag: PropTypes.oneOf['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'li', 'a', 'span']
+  tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'li', 'a', 'span'])
 }
 
 export default Text
