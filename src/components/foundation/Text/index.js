@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
+import propToStyle from '../../../theme/utils/propToStyle'
+
 export const TextStyleVariantsMap = {
   paragraph1: css`
   font-size: ${({ theme }) => theme.typographyVariants.paragraph1.fontSize};
@@ -18,13 +20,15 @@ export const TextStyleVariantsMap = {
 
 const TextBase = styled.span`
   ${({ variant }) => TextStyleVariantsMap[variant]}
+  ${propToStyle('textAlign')}
 `
 
-const Text = ({ tag, variant, children }) => {
+const Text = ({ tag, variant, children, ...props }) => {
   return (
     <TextBase
       as={tag}
       variant={variant}
+      {...props}
     >
       {children}
     </TextBase>
@@ -38,7 +42,7 @@ Text.defaultProps = {
 
 Text.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.oneOf(['paragraph1', 'smallestException']),
+  variant: PropTypes.oneOf(['title', 'paragraph1', 'smallestException']),
   tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'li', 'a', 'span'])
 }
 
