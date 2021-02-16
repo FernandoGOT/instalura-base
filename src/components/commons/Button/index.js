@@ -2,6 +2,7 @@ import React from 'react'
 import get from 'lodash/get'
 import styled, { css } from 'styled-components'
 
+import propToStyle from '../../../theme/utils/propToStyle'
 import { TextStyleVariantsMap } from '../../foundation/Text'
 import breakpointsMedia from '../../../theme/utils/breakpointsMedia'
 
@@ -33,12 +34,15 @@ const Button = styled.button`
 
   ${breakpointsMedia({
   xs: css`
-    ${TextStyleVariantsMap.smallestException}
-  `,
+      ${TextStyleVariantsMap.smallestException}
+    `,
   md: css`
-    ${TextStyleVariantsMap.paragraph1}
-  `
+      ${TextStyleVariantsMap.paragraph1}
+    `
 })}
+
+  ${propToStyle('margin')}
+  ${propToStyle('display')}
 `
 
 Button.defaultProps = {
