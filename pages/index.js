@@ -5,18 +5,17 @@ import Footer from '../src/components/commons/Footer'
 import Grid from '../src/components/layout/Grid'
 import Box from '../src/components/layout/Box'
 
-
 export default function Home() {
   return (
     <Box
       flex={1}
-      display='flex'
-      flexWrap='wrap'
-      flexDirection='column'
-      backgroundRepeat='no-repeat'
-      justifyContent='space-between'
-      backgroundPosition='bottom right'
-      backgroundImage='url(/images/bubbles.svg)'
+      display="flex"
+      flexWrap="wrap"
+      flexDirection="column"
+      backgroundRepeat="no-repeat"
+      justifyContent="space-between"
+      backgroundPosition="bottom right"
+      backgroundImage="url(/images/bubbles.svg)"
     >
       <Menu />
       <Grid.Container
@@ -26,10 +25,10 @@ export default function Home() {
           <Grid.Col
             offset={{ xs: 0, md: 1 }}
             value={{ xs: 12, md: 5 }}
-            display='flex'
-            flexDirection='column'
-            alignItems='flex-start'
-            justifyContent='center'
+            display="flex"
+            flexDirection="column"
+            alignItems="flex-start"
+            justifyContent="center"
           >
             <Text
               variant="title"
@@ -41,7 +40,7 @@ export default function Home() {
               }}
             >
               Compartilhe momentos e conecte-se com amigos
-              </Text>
+            </Text>
             <Text
               variant="paragraph1"
               tag="p"
@@ -53,7 +52,7 @@ export default function Home() {
             >
               Lorem Ipsum is simply dummy text of the printing and typesetting industry.
               Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.
-              </Text>
+            </Text>
 
             <Button
               variant="primary.main"
@@ -70,6 +69,7 @@ export default function Home() {
             value={{ xs: 12, md: 6 }}
           >
             <img
+              alt="Imagem de celular com páginas internas do projeto com o perfil do Cage"
               style={{ display: 'block', margin: 'auto' }}
               src="https://bootcamp-alura-01-git-modulo01.omariosouto.vercel.app/images/phones.png"
             />
