@@ -22,32 +22,32 @@ const Col = styled.div`
         xs: css`
       flex: 0 0 ${(100 * value.xs) / 12}%;
       max-width: ${(100 * value.xs) / 12}%;
-    `,
+    `
       }),
       ...(value.sm && {
         sm: css`
       flex: 0 0 ${(100 * value.sm) / 12}%;
       max-width: ${(100 * value.sm) / 12}%;
-    `,
+    `
       }),
       ...(value.md && {
         md: css`
       flex: 0 0 ${(100 * value.md) / 12}%;
       max-width: ${(100 * value.md) / 12}%;
-    `,
+    `
       }),
       ...(value.lg && {
         lg: css`
       flex: 0 0 ${(100 * value.lg) / 12}%;
       max-width: ${(100 * value.lg) / 12}%;
-    `,
+    `
       }),
       ...(value.xl && {
         xl: css`
       flex: 0 0 ${(100 * value.xl) / 12}%;
       max-width: ${(100 * value.xl) / 12}%;
-    `,
-      }),
+    `
+      })
     })
   }}
 
@@ -62,28 +62,28 @@ const Col = styled.div`
       ...(offset.xs && {
         xs: css`
       margin-left: ${(100 * offset.xs) / 12}%;
-    `,
+    `
       }),
       ...(offset.sm && {
         sm: css`
       margin-left: ${(100 * offset.sm) / 12}%;
-    `,
+    `
       }),
       ...(offset.md && {
         md: css`
       margin-left: ${(100 * offset.md) / 12}%;
-    `,
+    `
       }),
       ...(offset.lg && {
         lg: css`
       margin-left: ${(100 * offset.lg) / 12}%;
-    `,
+    `
       }),
       ...(offset.xl && {
         xl: css`
       margin-left: ${(100 * offset.xl) / 12}%;
-    `,
-      }),
+    `
+      })
     })
   }}
 
@@ -95,10 +95,10 @@ const Col = styled.div`
 
 Col.defaultProps = {
   value: {},
-  offset: {},
+  offset: {}
 }
 
-export const Grid = {
+const Grid = {
   Container: styled.div`
     width: 100%;
     padding-right: 28px;
@@ -125,7 +125,7 @@ export const Grid = {
     `,
     xl: css`
       max-width: 1222px;
-    `,
+    `
   })}
 
   ${propToStyle('marginTop')}
@@ -136,7 +136,7 @@ export const Grid = {
     margin-right: -16px;
     margin-left: -16px;
   `,
-  Col,
+  Col
 }
 
 export default Grid

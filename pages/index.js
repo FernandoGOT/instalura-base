@@ -1,9 +1,11 @@
+import React from 'react'
+
+import Box from '../src/components/layout/Box'
+import Grid from '../src/components/layout/Grid'
 import Menu from '../src/components/commons/Menu'
 import Text from '../src/components/foundation/Text'
 import Button from '../src/components/commons/Button'
 import Footer from '../src/components/commons/Footer'
-import Grid from '../src/components/layout/Grid'
-import Box from '../src/components/layout/Box'
 
 export default function Home() {
   return (
@@ -36,7 +38,7 @@ export default function Home() {
               color="tertiary.main"
               textAlign={{
                 xs: 'center',
-                md: 'left',
+                md: 'left'
               }}
             >
               Compartilhe momentos e conecte-se com amigos
@@ -47,7 +49,7 @@ export default function Home() {
               color="tertiary.light"
               textAlign={{
                 xs: 'center',
-                md: 'left',
+                md: 'left'
               }}
             >
               Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -58,7 +60,7 @@ export default function Home() {
               variant="primary.main"
               margin={{
                 xs: 'auto',
-                md: 'initial',
+                md: 'initial'
               }}
               display="block"
             >
