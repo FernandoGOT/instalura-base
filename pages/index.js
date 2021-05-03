@@ -6,8 +6,11 @@ import Menu from '../src/components/commons/Menu'
 import Text from '../src/components/foundation/Text'
 import Button from '../src/components/commons/Button'
 import Footer from '../src/components/commons/Footer'
+import Modal from '../src/components/commons/Modal'
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = React.useState(false)
+
   return (
     <Box
       flex={1}
@@ -19,10 +22,15 @@ export default function Home() {
       backgroundPosition="bottom right"
       backgroundImage="url(/images/bubbles.svg)"
     >
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        {(propsDoModal) => (
+          <Box backgroundColor="white" {...propsDoModal}>
+            Nosso conteudo pro modal
+          </Box>
+        )}
+      </Modal>
       <Menu />
-      <Grid.Container
-        marginTop={{ xs: '32px', md: '75px' }}
-      >
+      <Grid.Container marginTop={{ xs: '32px', md: '75px' }}>
         <Grid.Row>
           <Grid.Col
             offset={{ xs: 0, md: 1 }}
@@ -52,8 +60,8 @@ export default function Home() {
                 md: 'left'
               }}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy
+              text ever since the 1500s.
             </Text>
 
             <Button
@@ -63,13 +71,12 @@ export default function Home() {
                 md: 'initial'
               }}
               display="block"
+              onClick={() => setIsModalOpen(!isModalOpen)}
             >
               Cadastrar
             </Button>
           </Grid.Col>
-          <Grid.Col
-            value={{ xs: 12, md: 6 }}
-          >
+          <Grid.Col value={{ xs: 12, md: 6 }}>
             <img
               alt="Imagem de celular com páginas internas do projeto com o perfil do Cage"
               style={{ display: 'block', margin: 'auto' }}
