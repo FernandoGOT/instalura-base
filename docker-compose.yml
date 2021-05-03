@@ -6,6 +6,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    image: fernandogot/instalura-base
     ports:
       - 3000:3000
     volumes:
