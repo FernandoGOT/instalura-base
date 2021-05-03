@@ -25,7 +25,7 @@ export default function Home() {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {(propsDoModal) => (
           <Box backgroundColor="white" {...propsDoModal}>
-            Nosso conteudo pro modal
+            <div>Nosso conteudo pro modal</div>
           </Box>
         )}
       </Modal>
