@@ -7,6 +7,7 @@ import Text from '../src/components/foundation/Text'
 import Button from '../src/components/commons/Button'
 import Footer from '../src/components/commons/Footer'
 import Modal from '../src/components/commons/Modal'
+import FormCadastro from '../src/components/patterns/FormCadastro'
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = React.useState(false)
@@ -23,11 +24,7 @@ export default function Home() {
       backgroundImage="url(/images/bubbles.svg)"
     >
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        {(propsDoModal) => (
-          <Box backgroundColor="white" {...propsDoModal}>
-            <div>Nosso conteudo pro modal</div>
-          </Box>
-        )}
+        {(propsDoModal) => <FormCadastro propsDoModal={propsDoModal} />}
       </Modal>
       <Menu />
       <Grid.Container marginTop={{ xs: '32px', md: '75px' }}>
