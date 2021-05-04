@@ -31,17 +31,28 @@ const Button = styled.button`
   ${({ ghost }) => (ghost ? ButtonGhost : ButtonDefault)}
   &:hover,
   &:focus {
-    opacity: .5
+    opacity: 0.5;
   }
 
   ${breakpointsMedia({
-  xs: css`
+    xs: css`
       ${TextStyleVariantsMap.smallestException}
     `,
-  md: css`
+    md: css`
       ${TextStyleVariantsMap.paragraph1}
     `
-})}
+  })}
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.2;
+  }
+
+  ${({ fullWidth }) =>
+    fullWidth &&
+    css`
+      width: 100%;
+    `}
 
   ${propToStyle('margin')}
   ${propToStyle('display')}
