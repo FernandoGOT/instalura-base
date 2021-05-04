@@ -5,7 +5,9 @@ import propToStyle from '../../../theme/utils/propToStyle'
 const Box = styled.div`
   ${propToStyle('flex')}
   ${propToStyle('display')}
+  ${propToStyle('padding')}
   ${propToStyle('flexWrap')}
+  ${propToStyle('boxShadow')}
   ${propToStyle('flexDirection')}
   ${propToStyle('justifyContent')}
   ${propToStyle('backgroundColor')}
