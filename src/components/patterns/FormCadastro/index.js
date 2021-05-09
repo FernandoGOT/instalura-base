@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Lottie } from '@crello/react-lottie'
 
 import Box from '../../layout/Box'
@@ -57,9 +58,8 @@ const FormContent = () => {
 
         throw new Error('Não foi possível cadastrar o usuário agora: (')
       })
-      .then((respostaConvertidaEmObjeto) => {
+      .then(() => {
         setSubmissionStatus(formStates.DONE)
-        console.log(respostaConvertidaEmObjeto)
       })
       .catch((error) => {
         setSubmissionStatus(formStates.ERROR)
@@ -121,5 +121,10 @@ const FormCadastro = ({ propsDoModal }) => (
     </Grid.Col>
   </Grid.Row>
 )
+
+FormCadastro.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  propsDoModal: PropTypes.object.isRequired
+}
 
 export default FormCadastro
