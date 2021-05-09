@@ -1,23 +1,22 @@
 import React from 'react'
 
 import Logo from '../../../theme/Logo'
-import Button from '../../commons/Button'
+import Button from '../Button'
 import Text from '../../foundation/Text'
-import { MenuWrapper } from './styles/MenuWrapper'
+import MenuWrapper from './styles/MenuWrapper'
 
 const Menu = () => {
-
   const links = [
     {
-      text: "Home",
+      text: 'Home',
       url: '/'
     },
     {
-      text: "Perguntas frequentes",
+      text: 'Perguntas frequentes',
       url: '/faq'
     },
     {
-      text: "Sobre",
+      text: 'Sobre',
       url: '/sobre'
     }
   ]
@@ -28,13 +27,9 @@ const Menu = () => {
         <Logo />
       </MenuWrapper.LeftSide>
       <MenuWrapper.CentralSide>
-        {links.map(link => (
+        {links.map((link) => (
           <li key={link.url}>
-            <Text
-              tag='a'
-              href={link.url}
-              variant='smallestException'
-            >
+            <Text tag="a" href={link.url} variant="smallestException">
               {link.text}
             </Text>
           </li>
@@ -44,9 +39,7 @@ const Menu = () => {
         <Button ghost variant="secondary.main">
           Entrar
         </Button>
-        <Button variant="primary.main">
-          Cadastrar
-        </Button>
+        <Button variant="primary.main">Cadastrar</Button>
       </MenuWrapper.RightSide>
     </MenuWrapper>
   )
