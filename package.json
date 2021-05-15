@@ -22,6 +22,8 @@
     "styled-normalize": "^8.0.7"
   },
   "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "babel-plugin-styled-components": "^1.8.0",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "^7.20.0",
@@ -33,11 +35,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^6.0.0",
     "shelljs": "^0.8.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn lint"
-    }
   },
   "license": "MIT",
   "config": {
