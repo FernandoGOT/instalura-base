@@ -26,7 +26,7 @@ export default function Home() {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {(propsDoModal) => <FormCadastro propsDoModal={propsDoModal} />}
       </Modal>
-      <Menu />
+      <Menu onRegisterClick={() => setIsModalOpen(!isModalOpen)} />
       <Grid.Container marginTop={{ xs: '32px', md: '75px' }}>
         <Grid.Row>
           <Grid.Col

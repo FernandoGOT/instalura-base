@@ -1,9 +1,11 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
+import React from 'react'
 import get from 'lodash/get'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
+import Link from '../Link'
 import propToStyle from '../../../theme/utils/propToStyle'
 import { TextStyleVariantsMap } from '../../foundation/Text'
 import breakpointsMedia from '../../../theme/utils/breakpointsMedia'
@@ -18,7 +20,7 @@ const ButtonDefault = css`
   background-color: ${({ theme, variant }) => get(theme, `colors.${variant}.color`)};
 `
 
-const Button = styled.button`
+const ButtonWrapper = styled.button`
   border: 0;
   opacity: 1;
   cursor: pointer;
@@ -58,8 +60,24 @@ const Button = styled.button`
   ${propToStyle('display')}
 `
 
+const Button = ({ href, children, ...props }) => {
+  const hasHref = Boolean(href)
+  const tag = hasHref ? Link : 'button'
+
+  return (
+    <ButtonWrapper as={tag} href={href} {...props}>
+      {children}
+    </ButtonWrapper>
+  )
+}
+
 Button.defaultProps = {
-  variant: 'primary.main'
+  href: undefined
+}
+
+Button.propTypes = {
+  href: PropTypes.string,
+  children: PropTypes.node.isRequired
 }
 
 export default Button
