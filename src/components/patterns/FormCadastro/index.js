@@ -1,15 +1,28 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { Lottie } from '@crello/react-lottie'
 
 import Box from '../../layout/Box'
 import Grid from '../../layout/Grid'
 import Button from '../../commons/Button'
-import TextField from '../../forms/TextField'
 import Text from '../../foundation/Text'
+import TextField from '../../forms/TextField'
+import errorAnimation from './animations/error.json'
+import successAnimation from './animations/success.json'
+
+const formStates = {
+  DONE: 'DONE',
+  ERROR: 'ERROR',
+  DEFAULT: 'DEFAULT',
+  LOADING: 'LOADING'
+}
 
 const FormContent = () => {
+  const [isFormSubmited, setIsFormSubmited] = React.useState(false)
+  const [submissionStatus, setSubmissionStatus] = React.useState(formStates.DEFAULT)
   const [userInfo, setUserInfo] = React.useState({
     usuario: 'fernandoGomes',
-    email: 'fernando@gmail.com'
+    nome: 'Fernando Gomes'
   })
 
   const handleChange = (event) => {
@@ -21,15 +34,43 @@ const FormContent = () => {
     })
   }
 
-  const isFormInvalid = userInfo.usuario.length === 0 || userInfo.email.length === 0
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    setIsFormSubmited(true)
+    setSubmissionStatus(formStates.LOADING)
+
+    const userDTO = {
+      username: userInfo.usuario,
+      name: userInfo.nome
+    }
+
+    fetch('https://instalura-api.vercel.app/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userDTO)
+    })
+      .then((respostaDoServidor) => {
+        if (respostaDoServidor.ok) {
+          return respostaDoServidor.json()
+        }
+
+        throw new Error('Não foi possível cadastrar o usuário agora: (')
+      })
+      .then(() => {
+        setSubmissionStatus(formStates.DONE)
+      })
+      .catch((error) => {
+        setSubmissionStatus(formStates.ERROR)
+        console.error(error)
+      })
+  }
+
+  const isFormInvalid = userInfo.usuario.length === 0 || userInfo.nome.length === 0
 
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault()
-        console.log('O formulário está pronto, vamos cadastrar de fato o usuário')
-      }}
-    >
+    <form onSubmit={handleSubmit}>
       <Text variant="title" tag="h1" color="tertiary.main">
         Pronto para saber da vida dos outros?
       </Text>
@@ -37,14 +78,24 @@ const FormContent = () => {
         Você está a um passo de saber tudoo que está rolando no bairro, complete seu cadastro agora!
       </Text>
       <div>
-        <TextField type="email" placeholder="Email" name="email" value={userInfo.email} onChange={handleChange} />
+        <TextField type="nome" placeholder="nome" name="nome" value={userInfo.nome} onChange={handleChange} />
       </div>
       <div>
         <TextField type="text" placeholder="Usuário" name="usuario" value={userInfo.usuario} onChange={handleChange} />
       </div>
-      <Button type="submit" variant="primary.main" disabled={isFormInvalid} fullWidth>
+      <Button type="submit" variant="primary.main" disabled={isFormInvalid || submissionStatus === formStates.LOADING} fullWidth>
         Cadastrar
       </Button>
+      {isFormSubmited && submissionStatus === formStates.DONE && (
+        <Box display="flex" justifyContent="center">
+          <Lottie width="150px" height="150px" config={{ animationData: successAnimation, loop: false, autoplay: true }} />
+        </Box>
+      )}
+      {isFormSubmited && submissionStatus === formStates.ERROR && (
+        <Box display="flex" justifyContent="center">
+          <Lottie width="150px" height="150px" config={{ animationData: errorAnimation, loop: true, autoplay: true }} />
+        </Box>
+      )}
     </form>
   )
 }
@@ -70,5 +121,10 @@ const FormCadastro = ({ propsDoModal }) => (
     </Grid.Col>
   </Grid.Row>
 )
+
+FormCadastro.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  propsDoModal: PropTypes.object.isRequired
+}
 
 export default FormCadastro
