@@ -3,6 +3,7 @@ import get from 'lodash/get'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
+import Link from '../../commons/Link'
 import propToStyle from '../../../theme/utils/propToStyle'
 import breakpointsMedia from '../../../theme/utils/breakpointsMedia'
 
@@ -42,24 +43,42 @@ const TextBase = styled.span`
   ${propToStyle('marginBottom')}
   ${propToStyle('margin')}
 `
-const Text = ({ tag, variant, children, ...props }) => (
-  <TextBase
-    as={tag}
-    variant={variant}
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...props}
-  >
-    {children}
-  </TextBase>
-)
+const Text = ({ tag, variant, children, href, ...props }) => {
+  if (href) {
+    return (
+      <TextBase
+        as={Link}
+        href={href}
+        variant={variant}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+      >
+        {children}
+      </TextBase>
+    )
+  }
+
+  return (
+    <TextBase
+      as={tag}
+      variant={variant}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    >
+      {children}
+    </TextBase>
+  )
+}
 
 Text.propTypes = {
   tag: PropTypes.string,
+  href: PropTypes.string,
   children: PropTypes.node,
   variant: PropTypes.string
 }
 
 Text.defaultProps = {
+  href: '',
   tag: 'span',
   children: null,
   variant: 'paragraph1'
