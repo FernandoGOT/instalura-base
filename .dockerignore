@@ -21,4 +21,11 @@
 **/obj
 **/secrets.dev.yaml
 **/values.dev.yaml
+**/out
+**/.next
+**/.husky
+**/.github
+**/.eslintrc*
+**/.prettierrc*
+**/.commitlint*
 README.md

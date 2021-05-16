@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
-import breakpointsMedia from '../../../theme/utils/breakpointsMedia'
-import propToStyle from '../../../theme/utils/propToStyle'
+import breakpointsMedia from '../../../../theme/utils/breakpointsMedia'
+import propToStyle from '../../../../theme/utils/propToStyle'
 
 const Container = styled.div`
   width: 100%;
@@ -39,6 +39,8 @@ const Grid = {
     ${propToStyle('flex')}
     ${propToStyle('marginLeft')}
     ${propToStyle('marginRight')}
+    ${propToStyle('marginBottom')}
+    ${propToStyle('flexDirection')}
     ${propToStyle('justifyContent')}
   `,
   Col: styled.div`
@@ -138,6 +140,7 @@ const Grid = {
       })
     }}
 
+    ${propToStyle('order')}
     ${propToStyle('display')}
     ${propToStyle('alignItems')}
     ${propToStyle('justifyContent')}

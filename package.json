@@ -6,6 +6,7 @@
     "commit": "cz",
     "build": "next build",
     "start": "next start",
+    "export": "next build && next export",
     "custom-script": "node ./script-test.js",
     "lint": "eslint --ignore-path .gitignore ."
   },
