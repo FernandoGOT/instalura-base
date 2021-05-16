@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 
 const SEO = ({ headTitle }) => {
   const hasHeadTitle = Boolean(headTitle)
-  const titleBase = 'Instalura - Projeto Base do Alura Bootcamp JAMStack'
-  const title = hasHeadTitle ? `${headTitle} | ${titleBase}` : titleBase
+  const baseTitle = 'Instalura - Projeto Base do Alura Bootcamp JAMStack'
+  const title = hasHeadTitle ? `${headTitle} | ${baseTitle}` : baseTitle
   const description =
     'Aprenda Programação, Front-end, Data Science, UX, DevOps, Marketing, Inovação e Gestão na maior plataforma de tecnologia do Brasil'
   const image = 'https://www.alura.com.br/assets/img/alura-share.1617727198.png'
