@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Box from '../src/components/layout/Box'
-import Grid from '../src/components/layout/Grid'
+import Box from '../src/components/foundation/layout/Box'
+import Grid from '../src/components/foundation/layout/Grid'
 import Menu from '../src/components/commons/Menu'
 import Text from '../src/components/foundation/Text'
 import Button from '../src/components/commons/Button'
