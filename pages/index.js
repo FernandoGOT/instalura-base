@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Box from '../src/components/layout/Box'
-import Grid from '../src/components/layout/Grid'
+import Box from '../src/components/foundation/layout/Box'
+import Grid from '../src/components/foundation/layout/Grid'
 import Menu from '../src/components/commons/Menu'
 import Text from '../src/components/foundation/Text'
 import Button from '../src/components/commons/Button'
@@ -26,7 +26,7 @@ export default function Home() {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {(propsDoModal) => <FormCadastro propsDoModal={propsDoModal} />}
       </Modal>
-      <Menu />
+      <Menu onRegisterClick={() => setIsModalOpen(!isModalOpen)} />
       <Grid.Container marginTop={{ xs: '32px', md: '75px' }}>
         <Grid.Row>
           <Grid.Col
