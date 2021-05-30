@@ -30,9 +30,6 @@ const Menu = ({ onRegisterClick }) => {
       <MenuWrapper.CentralSide>
         {links.map((link) => (
           <li key={link.url}>
-            {/* <NextLink href={link.url}>
-              <a>{link.text}</a>
-            </NextLink> */}
             <Text href={link.url} variant="smallestException">
               {link.text}
             </Text>

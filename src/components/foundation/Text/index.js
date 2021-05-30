@@ -46,25 +46,14 @@ const TextBase = styled.span`
 const Text = ({ tag, variant, children, href, ...props }) => {
   if (href) {
     return (
-      <TextBase
-        as={Link}
-        href={href}
-        variant={variant}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...props}
-      >
+      <TextBase as={Link} href={href} variant={variant} {...props}>
         {children}
       </TextBase>
     )
   }
 
   return (
-    <TextBase
-      as={tag}
-      variant={variant}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    >
+    <TextBase as={tag} variant={variant} {...props}>
       {children}
     </TextBase>
   )

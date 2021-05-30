@@ -1,26 +1,21 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import FAQScreen from '../../src/components/screens/FAQScreen'
 
-const FAQPage = ({ faqCategories }) => <FAQScreen faqCategories={faqCategories} />
+import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc'
 
-FAQPage.propTypes = {
-  faqCategories: PropTypes.arrayOf(
-    PropTypes.shape({
-      slug: PropTypes.string,
-      title: PropTypes.string,
-      questions: PropTypes.arrayOf(
-        PropTypes.shape({
-          slug: PropTypes.string,
-          title: PropTypes.string,
-          description: PropTypes.string
-        })
-      ).isRequired
-    })
-  ).isRequired
+function FAQPage({ faqCategories }) {
+  return <FAQScreen faqCategories={faqCategories} />
 }
 
-export default FAQPage
+FAQPage.propTypes = FAQScreen.propTypes
+
+export default websitePageHOC(FAQPage, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Perguntas Frequentes'
+    }
+  }
+})
 
 export const getStaticProps = async () => {
   const faqCategories = await fetch('https://instalura-api.vercel.app/api/content/faq')
