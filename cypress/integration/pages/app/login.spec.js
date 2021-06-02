@@ -1,7 +1,3 @@
-// <reference types="cypress" />
-
-import { test } from 'shelljs'
-
 describe('/pages/app/login/', () => {
   it('preencha os campos e vá para a página /app/perfil/', () => {
     cy.visit('/app/login/')
