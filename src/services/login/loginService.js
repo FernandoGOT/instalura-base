@@ -1,3 +1,5 @@
+import { setCookie, destroyCookie } from 'nookies'
+
 const HttpClient = (url, { headers, body, ...options }) =>
   fetch(url, {
     headers: {
@@ -25,11 +27,17 @@ export const loginService = {
         username,
         password
       }
-    }).then(
-      (respostaConvertida) =>
-        // Salvar o token
-        respostaConvertida
-    )
+    }).then((respostaConvertida) => {
+      // Salvar o token
+      const { token } = respostaConvertida.data
+      setCookie(null, 'APP_TOKEN', token, {
+        path: '/',
+        maxAge: 7 * 24 * 60 * 60 // 7 days
+      })
+
+      return respostaConvertida
+    }),
+  logout: () => destroyCookie(null, 'APP_TOKEN')
 }
 
 export default loginService
