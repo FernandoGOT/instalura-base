@@ -3,32 +3,11 @@ import React from 'react'
 import Logo from '../../src/theme/Logo'
 import Link from '../../src/components/commons/Link'
 import Text from '../../src/components/foundation/Text'
-import Button from '../../src/components/commons/Button'
 import Box from '../../src/components/foundation/layout/Box'
-import TextField from '../../src/components/forms/TextField'
 import Grid from '../../src/components/foundation/layout/Grid'
+import FormLogin from '../../src/components/patterns/FormLogin'
 import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc'
 import { WebsitePageContext } from '../../src/components/wrappers/WebsitePage'
-
-const LoginForm = () => (
-  <form id="formCadastro" action="/app/profile">
-    <TextField placeholder="Usuário" name="usuario" data-cy="login-usuario" />
-    <TextField placeholder="Senha" name="senha" type="password" data-cy="login-senha" />
-
-    <Button
-      type="submit"
-      data-cy="login-button-signin"
-      variant="primary.main"
-      margin={{
-        xs: '0 auto',
-        md: 'initial'
-      }}
-      fullWidth
-    >
-      Entrar
-    </Button>
-  </form>
-)
 
 // Essa página e desafio, e vamos dar pronto no próximo módulo o 04
 const LoginScreen = () => {
@@ -50,7 +29,7 @@ const LoginScreen = () => {
               <Logo size="large" />
             </Link>
           </Box>
-          <LoginForm />
+          <FormLogin />
           <Text variant="paragraph1" tag="p" color="tertiary.light" textAlign="center">
             {'Não tem uma conta? '}
             <Link
