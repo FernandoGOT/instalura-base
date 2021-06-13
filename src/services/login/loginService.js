@@ -16,7 +16,7 @@ const HttpClient = (url, { headers, body, ...options }) =>
     throw new Error('Falha em pegar os dados do servidor')
   })
 
-export const loginService = {
+const loginService = {
   login: async ({ username, password }) =>
     HttpClient('https://instalura-api-git-master-omariosouto.vercel.app/api/login', {
       method: 'POST',
