@@ -9,7 +9,8 @@
     "export": "next build && next export",
     "test:integration:open": "cypress open",
     "custom-script": "node ./script-test.js",
-    "lint": "eslint --ignore-path .gitignore ."
+    "lint": "eslint --ignore-path .gitignore .",
+    "test:integration": "cypress run --headless"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.11",
