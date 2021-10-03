@@ -26,7 +26,10 @@ const Container = styled.div`
       max-width: 1222px;
     `
   })}
+  ${propToStyle('flex')}
+  ${propToStyle('display')}
   ${propToStyle('marginTop')}
+  ${propToStyle('alignItems')}
 `
 
 const Grid = {
