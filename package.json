@@ -4,8 +4,10 @@
   "scripts": {
     "dev": "next",
     "commit": "cz",
+    "test": "jest",
     "build": "next build",
     "start": "next start",
+    "test:watch": "jest --watch",
     "export": "next build && next export",
     "test:integration:open": "cypress open",
     "custom-script": "node ./script-test.js",
@@ -14,7 +16,10 @@
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.11",
+    "@types/jest": "^27.0.2",
+    "eslint-plugin-jest": "^24.5.0",
     "framer-motion": "^4.1.11",
+    "jest": "^27.2.4",
     "lodash": "^4.17.21",
     "next": "latest",
     "nookies": "^2.5.2",
