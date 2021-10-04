@@ -1,3 +1,4 @@
+import * as yup from 'yup'
 import React from 'react'
 import { useRouter } from 'next/router'
 
@@ -5,6 +6,11 @@ import Button from '../../commons/Button'
 import TextField from '../../forms/TextField'
 import { useForm } from '../../../infra/hooks/forms/useForm'
 import loginService from '../../../services/login/loginService'
+
+const loginSchema = yup.object().shape({
+  usuario: yup.string().required('"Usuário" é obrigatório').min(3, 'Preencha ao menos 3 caracteres'),
+  senha: yup.string().required('"Senha" é obrigatória').min(8, 'Sua senha precisa ter ao menos 8 caracteres')
+})
 
 const FormLogin = () => {
   const router = useRouter()
@@ -24,19 +30,32 @@ const FormLogin = () => {
         .then(() => {
           router.push('/app/profile/')
         })
-    }
+    },
+    validateSchema: async (values) => loginSchema.validate(values, { abortEarly: false })
   })
 
   return (
     <form id="formCadastro" onSubmit={form.handleSubmit}>
-      <TextField name="usuario" placeholder="Usuário" data-cy="login-usuario" value={form.values.usuario} onChange={form.handleChange} />
+      <TextField
+        name="usuario"
+        placeholder="Usuário"
+        data-cy="login-usuario"
+        onBlur={form.handleBlur}
+        error={form.errors.usuario}
+        value={form.values.usuario}
+        onChange={form.handleChange}
+        isTouched={form.touchedFields.usuario}
+      />
       <TextField
         name="senha"
         type="password"
         placeholder="Senha"
         data-cy="login-senha"
+        onBlur={form.handleBlur}
+        error={form.errors.senha}
         value={form.values.senha}
         onChange={form.handleChange}
+        isTouched={form.touchedFields.senha}
       />
 
       <Button
@@ -48,9 +67,11 @@ const FormLogin = () => {
           md: 'initial'
         }}
         fullWidth
+        disabled={form.isFormDisabled}
       >
         Entrar
       </Button>
+      <pre>{JSON.stringify(form.errors, null, 2)}</pre>
     </form>
   )
 }
