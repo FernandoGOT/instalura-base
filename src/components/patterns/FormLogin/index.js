@@ -2,7 +2,6 @@ import * as yup from 'yup'
 import React from 'react'
 import { useRouter } from 'next/router'
 
-import { fromPairs } from 'lodash-es'
 import Button from '../../commons/Button'
 import TextField from '../../forms/TextField'
 import { useForm } from '../../../infra/hooks/forms/useForm'
