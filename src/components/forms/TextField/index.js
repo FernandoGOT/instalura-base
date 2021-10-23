@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import Text from '../../foundation/Text'
 
@@ -13,6 +13,16 @@ const Input = styled(Text)`
   padding: 12px 16px;
   outline: 0;
   border-radius: ${({ theme }) => theme.borderRadius};
+
+  ${({ theme, isFieldInvalid }) =>
+    isFieldInvalid &&
+    css`
+    border-color: ${theme.colors.error.main.color};
+    & + span {
+      color: ${theme.colors.error.main.color};
+      font-size: 11px;
+    }]
+  `}
 `
 
 Input.defaultProps = {
@@ -26,7 +36,15 @@ export default function TextField({ placeholder, name, onChange, value, error, i
 
   return (
     <InputWrapper>
-      <Input type="text" placeholder={placeholder} name={name} onChange={onChange} value={value} {...props} />
+      <Input
+        name={name}
+        type="text"
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        isFieldInvalid={isFieldInvalid}
+        {...props}
+      />
 
       {isFieldInvalid && (
         <Text variant="smallestException" color="error.main" role="alert">
