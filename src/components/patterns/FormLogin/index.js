@@ -1,5 +1,6 @@
 import * as yup from 'yup'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 
 import Button from '../../commons/Button'
@@ -12,7 +13,7 @@ const loginSchema = yup.object().shape({
   senha: yup.string().required('"Senha" é obrigatória').min(8, 'Sua senha precisa ter ao menos 8 caracteres')
 })
 
-const FormLogin = () => {
+const FormLogin = ({ onSubmit }) => {
   const router = useRouter()
   const initialValues = {
     usuario: '',
@@ -22,6 +23,7 @@ const FormLogin = () => {
   const form = useForm({
     initialValues,
     onSubmit: (values) => {
+      form.setIsFormDisabled(true)
       loginService
         .login({
           username: values.usuario,
@@ -30,12 +32,19 @@ const FormLogin = () => {
         .then(() => {
           router.push('/app/profile/')
         })
+        .catch((err) => {
+          // TODO: Exibir o erro na tela
+          console.error(err)
+        })
+        .finally(() => {
+          form.setIsFormDisabled(false)
+        })
     },
     validateSchema: async (values) => loginSchema.validate(values, { abortEarly: false })
   })
 
   return (
-    <form id="formCadastro" onSubmit={form.handleSubmit}>
+    <form id="formCadastro" onSubmit={onSubmit || form.handleSubmit}>
       <TextField
         name="usuario"
         placeholder="Usuário"
@@ -74,6 +83,14 @@ const FormLogin = () => {
       <pre>{JSON.stringify(form.errors, null, 2)}</pre>
     </form>
   )
+}
+
+FormLogin.propTypes = {
+  onSubmit: PropTypes.func
+}
+
+FormLogin.defaultProps = {
+  onSubmit: () => {}
 }
 
 export default FormLogin

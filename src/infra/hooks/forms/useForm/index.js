@@ -30,26 +30,29 @@ export const useForm = ({ initialValues, onSubmit, validateSchema }) => {
     })
   }
 
+  const validateValues = async (currentValues) => {
+    try {
+      await validateSchema(currentValues)
+      setErrors({})
+      setIsFormDisabled(false)
+    } catch (err) {
+      const formatedErrors = err.inner.reduce((errorObjectAcc, currentError) => {
+        const fieldName = currentError.path
+        const errorMessage = currentError.message
+
+        return {
+          ...errorObjectAcc,
+          [fieldName]: errorMessage
+        }
+      }, {})
+
+      setErrors(formatedErrors)
+      setIsFormDisabled(true)
+    }
+  }
+
   React.useEffect(() => {
-    validateSchema(values)
-      .then(() => {
-        setErrors({})
-        setIsFormDisabled(false)
-      })
-      .catch((err) => {
-        const formatedErrors = err.inner.reduce((errorObjectAcc, currentError) => {
-          const fieldName = currentError.path
-          const errorMessage = currentError.message
-
-          return {
-            ...errorObjectAcc,
-            [fieldName]: errorMessage
-          }
-        }, {})
-
-        setErrors(formatedErrors)
-        setIsFormDisabled(true)
-      })
+    validateValues(values)
   }, [values])
 
   return {
@@ -59,7 +62,8 @@ export const useForm = ({ initialValues, onSubmit, validateSchema }) => {
     handleChange,
     handleSubmit,
     touchedFields,
-    isFormDisabled
+    isFormDisabled,
+    setIsFormDisabled
   }
 }
 
