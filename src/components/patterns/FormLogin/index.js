@@ -1,5 +1,6 @@
 import * as yup from 'yup'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 
 import Button from '../../commons/Button'
@@ -82,6 +83,14 @@ const FormLogin = ({ onSubmit }) => {
       <pre>{JSON.stringify(form.errors, null, 2)}</pre>
     </form>
   )
+}
+
+FormLogin.propTypes = {
+  onSubmit: PropTypes.func
+}
+
+FormLogin.defaultProps = {
+  onSubmit: () => {}
 }
 
 export default FormLogin
