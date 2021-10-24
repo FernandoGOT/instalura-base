@@ -25,8 +25,8 @@ const BASE_URL = isStagingEnv
     'https://instalura-api-omariosouto.vercel.app'
 
 const loginService = {
-  login: async ({ username, password }) =>
-    HttpClient(`${BASE_URL}/api/login`, {
+  login: async ({ username, password }, setCookieModule = setCookie, HttpClientModule = HttpClient) =>
+    HttpClientModule(`${BASE_URL}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -38,14 +38,20 @@ const loginService = {
     }).then((respostaConvertida) => {
       // Salvar o token
       const { token } = respostaConvertida.data
-      setCookie(null, 'APP_TOKEN', token, {
+      const hasToken = token
+
+      if (!hasToken) {
+        throw new Error('Failed to login')
+      }
+
+      setCookieModule(null, 'APP_TOKEN', token, {
         path: '/',
         maxAge: 7 * 24 * 60 * 60 // 7 days
       })
 
-      return respostaConvertida
+      return respostaConvertida.data
     }),
-  logout: () => destroyCookie(null, 'APP_TOKEN')
+  logout: async (destroyCookieModule = destroyCookie) => destroyCookieModule(null, 'APP_TOKEN')
 }
 
 export default loginService
