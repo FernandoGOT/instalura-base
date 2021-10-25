@@ -90,7 +90,7 @@ FormLogin.propTypes = {
 }
 
 FormLogin.defaultProps = {
-  onSubmit: () => {}
+  onSubmit: undefined
 }
 
 export default FormLogin
