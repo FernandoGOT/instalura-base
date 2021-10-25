@@ -1,5 +1,16 @@
 import React from 'react'
 
+const formatErrors = (yupErrorsInner = []) =>
+  yupErrorsInner.reduce((errorObjectAcc, currentError) => {
+    const fieldName = currentError.path
+    const errorMessage = currentError.message
+
+    return {
+      ...errorObjectAcc,
+      [fieldName]: errorMessage
+    }
+  }, {})
+
 export const useForm = ({ initialValues, onSubmit, validateSchema }) => {
   const [errors, setErrors] = React.useState({})
   const [values, setValues] = React.useState(initialValues)
@@ -36,15 +47,7 @@ export const useForm = ({ initialValues, onSubmit, validateSchema }) => {
       setErrors({})
       setIsFormDisabled(false)
     } catch (err) {
-      const formatedErrors = err.inner.reduce((errorObjectAcc, currentError) => {
-        const fieldName = currentError.path
-        const errorMessage = currentError.message
-
-        return {
-          ...errorObjectAcc,
-          [fieldName]: errorMessage
-        }
-      }, {})
+      const formatedErrors = formatErrors(err.inner)
 
       setErrors(formatedErrors)
       setIsFormDisabled(true)
@@ -52,7 +55,9 @@ export const useForm = ({ initialValues, onSubmit, validateSchema }) => {
   }
 
   React.useEffect(() => {
-    validateValues(values)
+    validateValues(values).catch((err) => {
+      console.error(err)
+    })
   }, [values])
 
   return {
